@@ -74,16 +74,17 @@ def initprog(a,b):
 def progstart(a,b):
     x=input("\n Select Linked list: a or b? or c to destroy both ")
     if(x=="a"):
-        compstart(a,b)
+        compstart(a,b,"a")
     elif(x=="b"):
-        compstart(b,a)
+        compstart(b,a,"b")
     elif(x=="c"):
         initprog(a,b)
     else:
         progstart(a,b)
 
 #Actual Computations for Program
-def compstart(list,another):
+#List = List to work with , another = anotehr list , workingwith = Varname being worked with currently
+def compstart(list,another,workingwith):
     x=input("\n Select Insert-1, Find-2, DeleteAt-3, Dump-4,Start-5 ")
     if(x=="1"):
         data=input("\n Data to insert ")
@@ -98,8 +99,12 @@ def compstart(list,another):
     elif(x=="4"):
         list.dump()
     elif(x=="5"):
-        progstart(list,another)
-    compstart(list, another)
+        #Send Data always in order of a,b as per currently working with 
+        if(workingwith=="a"): 
+            progstart(list,another)
+        else: 
+            progstart(another, list)
+    compstart(list, another,workingwith)
 
 #Code Initial Functions     
 a=LinkedList()
